@@ -6,9 +6,9 @@ import { postAPI } from '@/services/fetchAPI'
 import { toast } from 'react-toastify'
 const ResumeSection = ({ mockData, loading }) => {
   const [isEditing, setIsEditing] = useState(false)
-  const [resumeText, setResumeText] = useState(mockData.resume.text)
+  const [resumeText, setResumeText] = useState(mockData?.resume?.text || '')
   const [initialResumeText, setInitialResumeText] = useState(
-    mockData.resume.text
+    mockData?.resume?.text || ''
   )
 
   const handleEditClick = () => {
@@ -17,7 +17,7 @@ const ResumeSection = ({ mockData, loading }) => {
   }
 
   const handleSaveClick = async () => {
-    const data = { hizmetVerenId: '669fec07fd9d9fc6511f8e3f', resumeText }
+    const data = { hizmetVerenId: mockData.id, resumeText }
     try {
       const res = await postAPI('/profile/general/add-resume', data)
       if (res.status === 'ADDED') {

@@ -5,8 +5,8 @@ import { GrLanguage } from 'react-icons/gr'
 import { IoIosAddCircle } from 'react-icons/io'
 import { toast } from 'react-toastify'
 
-const LanguageSection = ({ data }) => {
-  const [languages, setLanguages] = useState(data.languages)
+const LanguageSection = ({ data: userInfo }) => {
+  const [languages, setLanguages] = useState(userInfo.languages)
   const [editLanguagesId, setEditLanguagesId] = useState(null)
   const [editLanguagesData, setEditLanguagesData] = useState({
     languageName: '',
@@ -38,7 +38,7 @@ const LanguageSection = ({ data }) => {
         languageName: editLanguagesData.languageName,
         level: editLanguagesData.level,
         id: null,
-        hizmetVerenId: '669fec07fd9d9fc6511f8e3f',
+        hizmetVerenId: userInfo.id,
       }
     } else {
       // Mevcut eğitim bilgisi güncelleniyor
@@ -46,7 +46,7 @@ const LanguageSection = ({ data }) => {
         id: editLanguagesId,
         languageName: editLanguagesData.languageName,
         level: editLanguagesData.level,
-        hizmetVerenId: '669fec07fd9d9fc6511f8e3f',
+        hizmetVerenId: userInfo.id,
       }
     }
 

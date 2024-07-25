@@ -22,8 +22,21 @@ const handler = async (req, res) => {
     }
 
     try {
-      const serviceProvider = await prisma.hizmetVeren.findUnique({
+      // İlk olarak gelen id'yi kullanarak kullanıcıyı bulun
+      const user = await prisma.user.findUnique({
         where: { id: id },
+      })
+
+      if (!user) {
+        return res.status(404).json({
+          status: 'error',
+          message: 'Kullanıcı bulunamadı',
+        })
+      }
+
+      // Kullanıcının id'sine bağlı hizmetVeren'i bulun
+      const serviceProvider = await prisma.hizmetVeren.findUnique({
+        where: { userId: id },
         include: include,
       })
 

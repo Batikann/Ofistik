@@ -5,8 +5,8 @@ import { IoIosAddCircle } from 'react-icons/io'
 import { PiStethoscopeFill } from 'react-icons/pi'
 import { toast } from 'react-toastify'
 
-const SkillsSection = ({ data }) => {
-  const [skills, setSkills] = useState(data.skills)
+const SkillsSection = ({ data: userInfo }) => {
+  const [skills, setSkills] = useState(userInfo.skills)
   const [editSkillId, setEditSkillId] = useState(null)
   const [editSkillData, setEditSkillData] = useState({
     name: '',
@@ -36,14 +36,14 @@ const SkillsSection = ({ data }) => {
       data = {
         name: editSkillData.name,
         id: null,
-        hizmetVerenId: '669fec07fd9d9fc6511f8e3f',
+        hizmetVerenId: userInfo.id,
       }
     } else {
       // Mevcut eğitim bilgisi güncelleniyor
       data = {
         id: editSkillId,
         name: editSkillData.name,
-        hizmetVerenId: '669fec07fd9d9fc6511f8e3f',
+        hizmetVerenId: userInfo.id,
       }
     }
 

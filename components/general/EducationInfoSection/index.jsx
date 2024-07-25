@@ -6,7 +6,7 @@ import { FaPencilAlt } from 'react-icons/fa'
 import { IoIosAddCircle } from 'react-icons/io'
 import { toast } from 'react-toastify'
 const EducationInfoSection = ({ mockData }) => {
-  const [educationInfo, setEducationInfo] = useState(mockData.educationInfo)
+  const [educationInfo, setEducationInfo] = useState(mockData?.educationInfo)
   const [editEducationId, setEditEducationId] = useState(null)
   const [editEducationData, setEditEducationData] = useState({
     university: '',
@@ -39,7 +39,7 @@ const EducationInfoSection = ({ mockData }) => {
         university: editEducationData.university,
         year: editEducationData.year,
         id: null,
-        hizmetVerenId: '669fec07fd9d9fc6511f8e3f',
+        hizmetVerenId: mockData.id,
       }
     } else {
       // Mevcut eğitim bilgisi güncelleniyor
@@ -47,7 +47,7 @@ const EducationInfoSection = ({ mockData }) => {
         id: editEducationId,
         university: editEducationData.university,
         year: editEducationData.year,
-        hizmetVerenId: '669fec07fd9d9fc6511f8e3f',
+        hizmetVerenId: mockData.id,
       }
     }
 
@@ -143,7 +143,7 @@ const EducationInfoSection = ({ mockData }) => {
               type="text"
               name="year"
               className="w-full p-2 border rounded mb-2"
-              value={editEducationData.endDate}
+              value={editEducationData.year}
               placeholder="Bitiş Tarihi"
               onChange={handleEducationInputChange}
             />
